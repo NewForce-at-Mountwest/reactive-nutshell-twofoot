@@ -45,6 +45,7 @@ Just to refresh your memory, here's an example of what your data structure might
 ## Professional Requirements
 
 1. Each teammate should build their own component structure for their feature. Once you hit MVP, you're welcome to refactor your app to use reusable components. 
+1. In the interest of cross-training, each team member *should try to build a different module than the one they built last time*.
 1. The README for your project should include instructions on how another person can download and run the application
 
 ## How to Handle Authentication
