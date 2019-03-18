@@ -1,4 +1,4 @@
-# Nutshell: The Information Dashboard
+# Nutshell: The Information Dashboard | REACT EDITION
 
 Your clients were thrilled with the product of your first sprint on the Nutshell app. They've decided that this app could be the Next Big Thing, and they want you to rebuild the app using React for maximum scalability and performance. The features of the app will be exactly the same. This time, you'll start out with some boilerplate code. Once you've set up your team repo, everyone should clone down this repository. 
 
