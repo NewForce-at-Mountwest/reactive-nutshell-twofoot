@@ -1,10 +1,10 @@
 # Nutshell: The Information Dashboard
 
-Nutshell is a new product offering that you have been tasked with building. It's a dashboard for people to use to organize their daily tasks, events, news article, friends, and chat messages.
+Your clients were thrilled with the product of your first sprint on the Nutshell app. They've decided that this app could be the Next Big Thing, and they want you to rebuild the app using React for maximum scalability and performance. The features of the app will be exactly the same. This time, you'll start out with some boilerplate code. Once you've set up your team repo, everyone should clone down this repository. 
 
-You will be using the React library to build out this application.
+Before you begin, one person should make an `api` folder and a `database.json` file. *Make sure that your database file is in your .gitignore before you commit.*
 
-To start you off, here's an example of what the resources in your API should look like once it's populated with some data from your application.
+Just to refresh your memory, here's an example of what your data structure might look like. 
 
 ### Users
 
@@ -33,7 +33,7 @@ To start you off, here's an example of what the resources in your API should loo
 ### Friends
 
 ```json
-{ "connectionId": 1, "userId": 1, "otherFriendId": 3 }
+{ "id": 1, "userId": 1, "otherFriendId": 3 }
 ```
 
 ### Tasks
@@ -44,8 +44,7 @@ To start you off, here's an example of what the resources in your API should loo
 
 ## Professional Requirements
 
-1. All teammates must be using Grunt to run ESLint and Browserify during development
-1. Each module should have a comment at the top with the following info: author(s) and purpose of module
+1. Each teammate should build their own component structure for their feature. Once you hit MVP, you're welcome to refactor your app to use reusable components. 
 1. The README for your project should include instructions on how another person can download and run the application
 
 ## How to Handle Authentication
@@ -61,3 +60,10 @@ If you want to add a Logout feature, all you need to do it remove the session st
 ```js
 sessionStorage.removeItem("activeUser")
 ```
+
+## Stretch Goals
+1. Private chat messages
+1. Friend requests, and the ability to reject or accept them
+1. Real time chat updates. If a user in one tab writes a chat message, a user logged in on another tab [will immediately see that chat message](https://www.w3schools.com/jsreF/event_storage_storagearea.asp)
+
+
