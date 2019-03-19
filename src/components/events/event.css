@@ -1,0 +1,14 @@
+button {
+    width: 8rem;
+}
+.events {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.card-event {
+    width: 15rem;
+    height: 10rem;
+    justify-content: center;
+    align-items: center;
+}
