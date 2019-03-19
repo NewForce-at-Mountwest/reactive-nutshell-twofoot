@@ -6,8 +6,6 @@ export default class TaskBuilder extends Component{
         completionDate: "",
         isCompleted : ""
     };
-
-    // Update state whenever an input field is edited
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
