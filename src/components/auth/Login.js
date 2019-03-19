@@ -1,48 +1,63 @@
 import React, { Component } from "react"
-
-
 export default class Login extends Component {
-
-    // Set initial state
     state = {
         email: "",
-        password: ""
+        password: "",
+        username: ""
     }
 
-    // Update state whenever an input field is edited
-    handleFieldChange = (evt) => {
-        const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
+    handleFieldChangeUser = evt => {
+        const stateToChange = {};
+          stateToChange[evt.target.id] = evt.target.value;
+        this.setState(stateToChange);
+      };
 
-    handleLogin = (e) => {
-        e.preventDefault()
-        sessionStorage.setItem(
-            "credentials",
-            JSON.stringify({
-                email: this.state.email,
-                password: this.state.password
-            })
-        )
-    }
+
+      constructNewUser = evt => {
+        evt.preventDefault();
+            const user = {
+                username: this.state.userName,
+                email: this.state.userEmail,
+                password: this.state.userPassword
+            }
+            localStorage.setItem(
+                "credentials",
+                JSON.stringify(user)
+              );
+             sessionStorage.setItem(
+                "credentials",
+                JSON.stringify(user)
+              );
+            this.props
+                .addUser(user)
+                .then(() => this.props.history.push("/tasks"));
+        }
+
+
 
     render() {
         return (
-            <form onSubmit={this.handleLogin}>
+            <form onSubmit={this.constructNewUser}>
                 <h1 className="h3 mb-3 font-weight-normal">Please register an account.</h1>
                 <label htmlFor="inputEmail">
                     Email address
                 </label>
-                <input onChange={this.handleFieldChange} type="email"
-                       id="email"
+                <input onChange={this.handleFieldChangeUser} type="email"
+                       id="userEmail"
                        placeholder="Email address"
+                       required="" autoFocus="" />
+                         <label htmlFor="inputEmail">
+                   Username
+                </label>
+                <input onChange={this.handleFieldChangeUser} type="text"
+                       id="userName"
+                       placeholder="Username"
                        required="" autoFocus="" />
                 <label htmlFor="inputPassword">
                     Password
                 </label>
-                <input onChange={this.handleFieldChange} type="password"
-                       id="password"
+                <input onChange={this.handleFieldChangeUser} type="password"
+                       id="userPassword"
                        placeholder="Password"
                        required="" />
                 <button type="submit">
