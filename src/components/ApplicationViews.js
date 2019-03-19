@@ -1,4 +1,4 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import EventList from "./events/eventList"
 import EventBuilder from "./events/eventBuilder"
