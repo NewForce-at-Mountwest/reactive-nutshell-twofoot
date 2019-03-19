@@ -12,6 +12,13 @@
     flex-flow: column-reverse;
 }
 
+.newsDiv2 {
+    background-color: var(--color-main-blue);
+    padding-top: 25px;
+    text-align: center;
+    padding-bottom: 52vh;
+}
+
 .newsDivHeader {
     text-align: center;
     background-color: var(--color-main-blue);
@@ -39,6 +46,18 @@
     border-radius: 10px;
 }
 
+.size1button{
+    font-size: 1rem;
+    background-color: var(--color-main-brown);
+    color: white;
+    padding: 5px 10px 5px 10px;
+    border-right: 2px solid var(--color-main-dark-brown);
+    border-bottom: 2px solid var(--color-main-dark-brown);
+    border-left: 2px solid var(--color-main-light-brown);
+    border-top: 2px solid var(--color-main-light-brown);
+    border-radius: 10px;
+}
+
 .navbar{
     background-color: var(--color-main-brown);
 }
@@ -47,10 +66,42 @@
     color: black;
 }
 
+.card-link{
+    color: white;
+}
+
+.text-muted{
+    color: var(--color-main-dark-brown) !important;
+    font-size: .75rem;
+}
+
 .color-white{
     color: white;
 }
 
 a:hover{
     color: var(--color-main-dark-brown);
+}
+
+#title{
+    width: 24rem;
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
+    border-radius: 5px;
+}
+
+#synopsis{
+    width: 24rem;
+    height: 25vh;
+    overflow-wrap: break-word;
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
+    border-radius: 5px;
+}
+
+#url{
+    width: 24rem;
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
+    border-radius: 5px;
 }

@@ -30,16 +30,21 @@ class CreateArticles extends Component {
       timestamp: now,
       userId: userId
     };
-
-    apiManager.createArticle(createArticle);
+    fetch(`http://localhost:8080/news`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(createArticle)
+      })
+    .then(() => {this.props.history.push("/")})
+    .then(() => {this.props.updateNews()})
   };
 
   render() {
     return (
-      <form className="mainPage" onSubmit={this.handleLogin}>
+      <form className="newsDiv2" onSubmit={this.handleLogin}>
         <h1 className="h3 mb-3 font-weight-normal">Create an Article</h1>
-        <p>
-          <label htmlFor="title">Title: </label>
+        <h4 className="color-white">
+          <label htmlFor="title">Title: </label></h4><p>
           <input
             onChange={this.handleFieldChange}
             type="text"
@@ -49,8 +54,8 @@ class CreateArticles extends Component {
             autoFocus=""
           />
         </p>
-        <p>
-          <label htmlFor="synopsis">Synopsis: </label>
+        <h4 className="color-white">
+          <label htmlFor="synopsis">Synopsis: </label></h4><p>
           <input
             onChange={this.handleFieldChange}
             type="text"
@@ -59,8 +64,8 @@ class CreateArticles extends Component {
             required=""
           />
         </p>
-        <p>
-          <label htmlFor="url">url:</label>
+        <h4 className="color-white">
+          <label htmlFor="url">url:</label></h4><p>
           <input
             onChange={this.handleFieldChange}
             type="text"
@@ -69,7 +74,7 @@ class CreateArticles extends Component {
             required=""
           />
         </p>
-        <button type="submit">Save Article</button>
+        <button className="size1button" type="submit">Save Article</button>
       </form>
     );
   }

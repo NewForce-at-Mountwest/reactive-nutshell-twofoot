@@ -1,12 +1,36 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import ArticleList from "./newsArticle/articleList";
-import CreateArticle from "./newsArticle/createArticle"
+import apiManager from "./newsArticle/apiManager";
+import CreateArticles from "./newsArticle/createArticle";
 
 export default class ApplicationViews extends Component {
   state = {
     news: [],
     username: []
+  };
+
+  updateNews = () => {
+    fetch(`http://localhost:8080/news`)
+      .then(news => news.json())
+      .then(parsedNews => {
+        this.setState({ news: parsedNews });
+      });
+  };
+
+  articleDelete = id => {
+    fetch(`http://localhost:8080/news/${id}`, {
+      method: "DELETE"
+    })
+      .then(() => fetch(`http://localhost:8080/news?_expand=user`))
+      .then(news => news.json())
+      .then(parsedNews => {
+        this.setState({ news: parsedNews });
+      });
+  };
+
+  deleteArticle = id => {
+    this.articleDelete(id);
   };
 
   componentDidMount() {
@@ -15,7 +39,7 @@ export default class ApplicationViews extends Component {
       .then(parsedNews => {
         this.setState({ news: parsedNews });
       })
-    .then(sessionStorage.setItem("userId", JSON.stringify(1)))
+      .then(sessionStorage.setItem("userId", JSON.stringify(1)));
   }
 
   render() {
@@ -25,14 +49,26 @@ export default class ApplicationViews extends Component {
           exact
           path="/"
           render={props => {
-            return <ArticleList {...props} news={this.state.news} />;
+            return (
+              <ArticleList
+                {...props}
+                news={this.state.news}
+                deleteArticle={this.deleteArticle}
+              />
+            );
           }}
         />
 
         <Route
           path="/create-article"
           render={props => {
-            return <CreateArticle {...props} news={this.state.news}/>;
+            return (
+              <CreateArticles
+                {...props}
+                news={this.state.news}
+                updateNews={this.updateNews}
+              />
+            );
           }}
         />
 

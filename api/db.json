@@ -9,99 +9,13 @@
   ],
   "news": [
     {
-      "id": 1,
-      "title": "General Jan Dodonna's brilliant plan",
-      "synopsis": "The entire starfleet couldn't destroy the whole planet. It'd take a thousand ships with more fire power than I've... There's another ship coming in. Maybe they know what happened. It's an Imperial fighter. It followed us! No. It's a short range fighter. There aren't any bases around here. Where did it come from? It sure is leaving in a big hurry. If they identify us, we're in big trouble. Not if I can help it. Chewie...jam it's transmissions. It'd be as well to let it go. It's too far out of range. Not for long...",
-      "url": "https://www.google.com/",
-      "userId": 1,
-      "timestamp": "1553006848593"
-    },
-    {
-      "id": 2,
-      "title": "Admiral Ackbar new Admiral!",
-      "synopsis": "Stand by, Chewie, here we go. Cut in the sublight engines. What the...? Aw, we've come out of hyperspace into a meteor shower. Some kind of asteroid collision. It's not on any of the charts. What's going on? Our position is correct, except...no, Alderaan! What do you mean? Where is it? Thats what I'm trying to tell you, kid. It ain't there. It's been totally blown away. What? How? Destroyed...by the Empire!",
-      "url": "https://www.google.com/",
-      "userId": 1,
-      "timestamp": "1553006848593"
-    },
-    {
-      "id": 3,
-      "title": "Wedge Antilles amazing flight",
-      "synopsis": "My scope's negative. I don't see anything. Keep up your visual scanning. With all this jamming, they'll be on top of you before your scope can pick them up. Biggs! You've picked one up...watch it! I can't see it! Where is he?! He's on me tight, I can't shake him...I can't shake him. Hang on, Biggs, I'm coming in. Got him!",
-      "url": "https://www.google.com/",
-      "userId": 1,
-      "timestamp": "1553000000000"
-    },
-    {
-      "id": 4,
-      "title": "Bounty out for IG-88",
-      "synopsis": "What good's a reward if you ain't around to use it? Besides, attacking that battle station ain't my idea of courage. It's more like suicide. All right. Well, take care of yourself, Han. I guess that's what you're best at, isn't it? Hey, Luke...may the Force be with you! What're you lookin' at? I know what I'm doing.",
-      "url": "https://www.google.com/",
-      "userId": 1,
-      "timestamp": "1553006000000"
-    },
-    {
-      "id": 5,
-      "title": "Weequay in trouble",
-      "synopsis": "Stretch out with your feelings. You see, you can do it. I call it luck. In my experience, there's no such thing as luck. Look, going good against remotes is one thing. Going good against the living? That's something else. Looks like we're coming up on Alderaan. You know, I did feel something. I could almost see the remote. That's good. You have taken your first step into a larger world.",
-      "url": "https://www.google.com/",
-      "userId": 1,
-      "timestamp": "1553006800000"
-    },
-    {
-      "title": "a",
-      "synopsis": "aaa",
-      "url": "a",
-      "timestamp": 1553019041494,
+      "title": "jyttrhdgfdhmfd",
+      "synopsis": "fthktjrytky",
+      "url": "ytfjytfytkf",
+      "timestamp": 1553037566632,
       "userId": "1",
-      "id": 6
+      "id": 1
     }
   ],
-  "friends": [
-    {
-      "id": 1,
-      "userId": "1",
-      "friendId": "2"
-    },
-    {
-      "id": 2,
-      "userId": "1",
-      "friendId": "3"
-    },
-    {
-      "id": 3,
-      "userId": "1",
-      "friendId": "4"
-    },
-    {
-      "id": 4,
-      "userId": "1",
-      "friendId": "5"
-    },
-    {
-      "id": 5,
-      "userId": "2",
-      "friendId": "1"
-    },
-    {
-      "id": 6,
-      "userId": "2",
-      "friendId": "3"
-    },
-    {
-      "id": 7,
-      "userId": "2",
-      "friendId": "4"
-    },
-    {
-      "id": 8,
-      "userId": "2",
-      "friendId": "5"
-    },
-    {
-      "id": 9,
-      "userId": "3",
-      "friendId": "1"
-    }
-  ]
+  "friends": []
 }

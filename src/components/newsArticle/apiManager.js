@@ -6,12 +6,14 @@ const apiManager = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(createArticle)
-    });
+    })
   },
-  articleDelete: () => {
-    fetch(`http://localhost:8080/news`, {
-      method: "Delete"
-    });
+  deleteArticle: id => {
+    fetch(`http://localhost:8080/news/${id}`, {
+      method: "DELETE"
+    })
+      .then(() => fetch(`http://localhost:8080/news?_expand=user`))
+      .then(news => news.json())
   }
 };
 
