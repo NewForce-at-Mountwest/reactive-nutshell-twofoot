@@ -1,0 +1,99 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Anakin",
+      "password": "a",
+      "email": "anakinhateslava@mustafar.com"
+    }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "title": "World is on fire!",
+      "synopsis": "The world is indeed on fire...",
+      "url": "https://www.google.com/",
+      "userId": 1,
+      "timestamp": 0
+    },
+    {
+      "id": 2,
+      "title": "Whoooahhh",
+      "synopsis": "fisaydfouqetopwieyfI",
+      "url": "https://www.google.com/",
+      "userId": 1,
+      "timestamp": 0
+    },
+    {
+      "id": 3,
+      "title": "LYUSAGIUFSALJHSAJLGFSJH",
+      "synopsis": "lkjsdyfhiu   w8ew",
+      "url": "https://www.google.com/",
+      "userId": 1,
+      "timestamp": 0
+    },
+    {
+      "id": 4,
+      "title": "WYhf    FG",
+      "synopsis": "adhaedrtj5tehaenaytngd gdty",
+      "url": "https://www.google.com/",
+      "userId": 1,
+      "timestamp": 0
+    },
+    {
+      "id": 5,
+      "title": "ffdfrfg",
+      "synopsis": "ju ckmdc kfkck",
+      "url": "https://www.google.com/",
+      "userId": 1,
+      "timestamp": 0
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "userId": "1",
+      "friendId": "2"
+    },
+    {
+      "id": 2,
+      "userId": "1",
+      "friendId": "3"
+    },
+    {
+      "id": 3,
+      "userId": "1",
+      "friendId": "4"
+    },
+    {
+      "id": 4,
+      "userId": "1",
+      "friendId": "5"
+    },
+    {
+      "id": 5,
+      "userId": "2",
+      "friendId": "1"
+    },
+    {
+      "id": 6,
+      "userId": "2",
+      "friendId": "3"
+    },
+    {
+      "id": 7,
+      "userId": "2",
+      "friendId": "4"
+    },
+    {
+      "id": 8,
+      "userId": "2",
+      "friendId": "5"
+    },
+    {
+      "id": 9,
+      "userId": "3",
+      "friendId": "1"
+    }
+  ]
+}
