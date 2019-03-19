@@ -1,6 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import ArticleList from "./newsArticle/articleList";
+import CreateArticle from "./newsArticle/createArticle"
 
 export default class ApplicationViews extends Component {
   state = {
@@ -10,10 +11,11 @@ export default class ApplicationViews extends Component {
 
   componentDidMount() {
     fetch(`http://localhost:8080/news`)
-    .then(news => news.json())
-    .then(parsedNews => {
-      this.setState({news: parsedNews})
-    })
+      .then(news => news.json())
+      .then(parsedNews => {
+        this.setState({ news: parsedNews });
+      })
+    .then(sessionStorage.setItem("userId", JSON.stringify(1)))
   }
 
   render() {
@@ -24,6 +26,13 @@ export default class ApplicationViews extends Component {
           path="/"
           render={props => {
             return <ArticleList {...props} news={this.state.news} />;
+          }}
+        />
+
+        <Route
+          path="/create-article"
+          render={props => {
+            return <CreateArticle {...props} news={this.state.news}/>;
           }}
         />
 

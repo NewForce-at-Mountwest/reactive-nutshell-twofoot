@@ -1,13 +1,56 @@
 :root{
     --color-main-blue: #72afb2;
     --color-main-brown: #ce9363;
+    --color-main-dark-brown: #a5764f;
+    --color-main-light-brown: #ffb477;
 }
 
 .newsDiv {
     background-color: var(--color-main-blue);
     padding-top: 25px;
+    display: flex;
+    flex-flow: column-reverse;
 }
+
+.newsDivHeader {
+    text-align: center;
+    background-color: var(--color-main-blue);
+    padding-top: 25px;
+}
+
 
 .news{
     margin-bottom: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+    background-color: var(--color-main-brown);
+    text-align: center;
+}
+
+.size2button{
+    font-size: 2rem;
+    background-color: var(--color-main-brown);
+    color: black;
+    padding: 5px 10px 5px 10px;
+    border-right: 2px solid var(--color-main-dark-brown);
+    border-bottom: 2px solid var(--color-main-dark-brown);
+    border-left: 2px solid var(--color-main-light-brown);
+    border-top: 2px solid var(--color-main-light-brown);
+    border-radius: 10px;
+}
+
+.navbar{
+    background-color: var(--color-main-brown);
+}
+
+.nav-link{
+    color: black;
+}
+
+.color-white{
+    color: white;
+}
+
+a:hover{
+    color: var(--color-main-dark-brown);
 }
