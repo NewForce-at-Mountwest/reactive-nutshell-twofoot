@@ -1,14 +1,22 @@
-button {
-    width: 8rem;
-}
 .events {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+
 }
 .card-event {
     width: 15rem;
     height: 10rem;
-    justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
+
+}
+.card-event:nth-last-child(-1n+1){
+    background-color: #ce9363;
+}
+.event-attempt-btn {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 1%;
 }

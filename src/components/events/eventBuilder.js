@@ -42,7 +42,7 @@ export default class EventForm extends Component {
                             <input type="text" className="form-control" onChange={this.handleFieldChange} id="eventName" placeholder="Event" />
                         </div>
                         <div className="col">
-                            <input type="text" className="form-control" onChange={this.handleFieldChange} id="eventDate" placeholder="Date" />
+                            <input type="date" className="form-control" onChange={this.handleFieldChange} id="eventDate" placeholder="Date" />
                         </div>
                         <div className="col">
                             <input type="text" className="form-control" onChange={this.handleFieldChange} id="eventLocation" placeholder="Location" />

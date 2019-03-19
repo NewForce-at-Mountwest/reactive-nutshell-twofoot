@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import EventList from "./events/eventList"
 import EventBuilder from "./events/eventBuilder"
 import EventApiManager from "./events/eventApiManager"
+import EventEditForm from "./events/eventEditForm"
 
 export default class ApplicationViews extends Component {
 
@@ -20,6 +21,12 @@ export default class ApplicationViews extends Component {
   deleteEvent = id =>
   EventApiManager.deleteEvent(id).then(events =>
     this.setState({events: events}))
+
+    updateEvent = editedEventObject => {
+      return EventApiManager.putEvent(editedEventObject)
+      .then(() => EventApiManager.getAllEvents())
+      .then(events => this.setState({events: events}))
+    }
     // End of Event Api Calls
 
 
@@ -68,6 +75,15 @@ export default class ApplicationViews extends Component {
             events={this.state.events} />
           }}
         />
+        <Route path="/events/:eventId(\d+)/edit"
+        render={props=> {
+          return (
+            <EventEditForm
+            {...props}
+            updateEvent={this.updateEvent}
+            events={this.state.events} />
+          )
+        }} />
         <Route
           path="/events/new" render={props => {
             return <EventBuilder {...props} addEvent={this.addEvent} />
