@@ -7,7 +7,7 @@ class ArticleBuilder extends Component {
   };
 
   render() {
-    if (this.props.news.userId === sessionStorage.getItem("userId")) {
+    if (this.props.news.userId === sessionStorage.getItem("credentials")) {
       return (
         <div className="card news" id={this.props.news.id}>
           <div className="card-body">

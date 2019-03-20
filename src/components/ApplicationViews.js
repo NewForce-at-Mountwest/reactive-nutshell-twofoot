@@ -39,7 +39,7 @@ export default class ApplicationViews extends Component {
       .then(parsedNews => {
         this.setState({ news: parsedNews });
       })
-      .then(sessionStorage.setItem("userId", JSON.stringify(1)));
+      .then(sessionStorage.setItem("credentials", JSON.stringify(1)));
   }
 
   render() {

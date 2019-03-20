@@ -109,3 +109,26 @@ a:hover{
     border: 2px solid var(--color-main-dark-brown);
     border-radius: 5px;
 }
+
+#newTitle{
+    width: 24rem;
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
+    border-radius: 5px;
+}
+
+#newSynopsis{
+    width: 24rem;
+    height: 25vh;
+    overflow-wrap: break-word;
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
+    border-radius: 5px;
+}
+
+#newUrl{
+    width: 24rem;
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
+    border-radius: 5px;
+}

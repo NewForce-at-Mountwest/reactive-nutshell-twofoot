@@ -57,7 +57,7 @@ class EditArticles extends Component {
   render() {
     return (
       <form className="newsDiv2" onSubmit={this.handleLogin}>
-        <h1 className="h3 mb-3 font-weight-normal">Create an Article</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Edit Article</h1>
         <h4 className="color-white">
           <label htmlFor="title">Title: </label></h4><p>
           <input
@@ -72,14 +72,13 @@ class EditArticles extends Component {
         </p>
         <h4 className="color-white">
           <label htmlFor="synopsis">Synopsis: </label></h4><p>
-          <input
+          <textarea
             onChange={this.handleFieldChange}
-            type="text"
             id="newSynopsis"
             placeholder="This is where you put a synopsis for the nes article you are writing. Something about the earth's shape and scientists, yadda, yadda, yadda."
             required=""
             value={this.state.newSynopsis}
-          />
+          ></textarea>
         </p>
         <h4 className="color-white">
           <label htmlFor="url">url:</label></h4><p>

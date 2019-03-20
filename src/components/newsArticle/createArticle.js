@@ -54,13 +54,14 @@ class CreateArticles extends Component {
         </p>
         <h4 className="color-white">
           <label htmlFor="synopsis">Synopsis: </label></h4><p>
-          <input
+          <textarea
             onChange={this.handleFieldChange}
-            type="text"
             id="synopsis"
+            rows="5"
+            cols="20"
             placeholder="This is where you put a synopsis for the nes article you are writing. Something about the earth's shape and scientists, yadda, yadda, yadda."
             required=""
-          />
+          ></textarea>
         </p>
         <h4 className="color-white">
           <label htmlFor="url">url:</label></h4><p>

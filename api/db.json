@@ -9,14 +9,6 @@
   ],
   "news": [
     {
-      "title": "jyttrhdgfdhmfd",
-      "synopsis": "fthktjrytky",
-      "url": "ytfjytfytkf",
-      "timestamp": 1553037566632,
-      "userId": "1",
-      "id": 1
-    },
-    {
       "title": "Test One",
       "synopsis": "hkhdfshfdsdsfkdfsjdfsdfsdfsjhkhsdfhdfsdfsdfsjdfs",
       "url": "https//sdkjasfdjsgdalkjsdlkjsda.com",
@@ -25,12 +17,36 @@
       "id": 2
     },
     {
-      "title": "Testing",
-      "synopsis": "jdsfk",
-      "url": "lusdiaghofiugqhweifugsauiygviousetbyugq",
-      "timestamp": 1553093892938,
+      "title": "Chewbacca Documentary",
+      "synopsis": "Lord Vader, I should have known. Only you could be so bold. The Imperial Senate will not sit for this, when they hear you've attacked a diplomatic... Don't play games with me, Your Highness. You weren't on any mercy mission this time. You passed directly through a restricted system. Several transmissions were beamed to this ship by Rebel spies. I want to know what happened to the plans they sent you. I don't know what you're talking about. I'm a member of the Imperial Senate on a diplomatic mission to Alderaan... You're a part of the Rebel Alliance...and a traitor. Take her away!",
+      "url": "https://forcemipsum.com/#",
+      "timestamp": 1553096458811,
       "userId": "1",
       "id": 3
+    },
+    {
+      "title": "Tarkin given new Grand Moff Title!",
+      "synopsis": "Don't be too proud of this technological terror you've constructed. The ability to destroy a planet is insignificant next to the power of the Force. Don't try to frighten us with your sorcerer's ways, Lord Vader. Your sad devotion to that ancient religion has not helped you conjure up the stolen data tapes, or given you clairvoyance enough to find the Rebel's hidden fort... I find your lack of faith disturbing. Enough of this! Vader, release him! As you wish. This bickering is pointless. Lord Vader will provide us with the location of the Rebel fortress by the time this station is operational. We will then crush the Rebellion with one swift stroke.",
+      "url": "https://forcemipsum.com/#",
+      "timestamp": 1553096946641,
+      "userId": "1",
+      "id": 4
+    },
+    {
+      "title": "Weakness found in Death Star",
+      "synopsis": "The battle station is heavily shielded and carries a firepower greater than half the star fleet. It's defenses are designed around a direct large-scale assault. A small one-man fighter should be able to penetrate the outer defense. Pardon me for asking, sir, but what good are snub fighters going to be against that? Well, the Empire doesn't consider a small one-man fighter to be any threat, or they'd have a tighter defense. An analysis of the plans provided by Princess Leia has demonstrated a weakness in the battle station.",
+      "url": "https://forcemipsum.com/#",
+      "timestamp": 1553097051807,
+      "userId": "1",
+      "id": 5
+    },
+    {
+      "title": "Droids currently involved in terrorist plan",
+      "synopsis": "Hey, you're not permitted in there. It's restricted. You'll be deactivated for sure.. Don't call me a mindless philosopher, you overweight glob of grease! Now come out before somebody sees you. Secret mission? What plans? What are you talking about? I'm not getting in there! I'm going to regret this. There goes another one. Hold your fire. There are no life forms. It must have been short-circuited. That's funny, the damage doesn't look as bad from out here. Are you sure this things safe?",
+      "url": "https://forcemipsum.com/#",
+      "timestamp": 1553097225407,
+      "userId": "1",
+      "id": 6
     }
   ],
   "friends": []
