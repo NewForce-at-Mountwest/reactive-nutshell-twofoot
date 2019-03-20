@@ -20,7 +20,8 @@ export default class TaskEditForm extends Component {
         id: this.props.match.params.taskId,
         name: this.state.taskName,
         completionDate: this.state.taskCompletionDate,
-        isCompleted : false
+        isCompleted : false,
+        userId: sessionStorage.getItem('credentials')
       };
       this.props
         .editTask(editedTask)

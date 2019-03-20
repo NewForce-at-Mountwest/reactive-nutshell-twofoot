@@ -17,7 +17,7 @@ export default class TaskList extends Component {
         <article>
           <h1>Tasks</h1>
           {this.props.tasks.map(task => {
-            if (task.isCompleted === false) {
+            if (task.isCompleted === false && task.userId === sessionStorage.getItem('credentials')) {
               return <div key={task.id}>
                 {task.name}<p><input type="checkbox" onChange={() => this.props.completeTask({ isCompleted: true }, task.id)}></input>Finished?</p>
                 <p>{task.completionDate}</p>

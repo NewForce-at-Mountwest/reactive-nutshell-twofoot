@@ -4,7 +4,8 @@ export default class TaskBuilder extends Component{
     state = {
         taskName: "",
         completionDate: "",
-        isCompleted : ""
+        isCompleted : "",
+        userId: ""
     };
     handleFieldChange = evt => {
         const stateToChange = {};
@@ -16,7 +17,8 @@ export default class TaskBuilder extends Component{
             const task = {
                 name: this.state.taskName,
                 completionDate: this.state.completionDate,
-                isCompleted: false
+                isCompleted: false,
+                userId: sessionStorage.getItem('credentials')
             }
             this.props
                 .addTask(task)

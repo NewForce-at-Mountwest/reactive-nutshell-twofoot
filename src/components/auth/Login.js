@@ -4,8 +4,7 @@ export default class Login extends Component {
     state = {
         email: "",
         password: "",
-        username: ""
-
+        username: "",
     }
 
     handleFieldChangeUser = evt => {
@@ -25,7 +24,7 @@ export default class Login extends Component {
     UserManager.getByEmail(this.state.email).then(user => {
                 this.props.registerUser(userToPost).then(user => {
                     console.log(user);
-                    sessionStorage.setItem("credentials", JSON.stringify(user.id))
+                    sessionStorage.setItem("credentials", JSON.stringify(user.id));
                     localStorage.setItem("credentials", JSON.stringify(user.id));
                     this.props.history.push("/");
                     this.props.refreshUsers()})})}
