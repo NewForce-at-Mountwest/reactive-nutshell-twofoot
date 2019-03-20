@@ -19,7 +19,7 @@ class CreateArticles extends Component {
     e.preventDefault();
 
     let now = Date.now();
-    let userId = sessionStorage.getItem("userId")
+    let userId = sessionStorage.getItem("credentials")
 
     const createArticle = {
       title: this.state.title,

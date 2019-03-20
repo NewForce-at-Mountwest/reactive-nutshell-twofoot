@@ -20,7 +20,7 @@ class EditArticles extends Component {
     e.preventDefault();
 
     let now = Date.now();
-    let userId = sessionStorage.getItem("userId")
+    let userId = sessionStorage.getItem("credentials")
 
     const createArticle = {
       id: this.props.match.params.id,
