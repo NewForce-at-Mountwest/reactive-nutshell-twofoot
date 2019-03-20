@@ -31,7 +31,7 @@ export default class TaskEditForm extends Component {
     TaskManager.getOneTask(this.props.match.params.taskId).then(task => {
       this.setState({
         taskName: task.name,
-        taskcompletionDate: task.completionDate,
+        taskCompletionDate: task.completionDate,
         isCompleted: false,
         id: this.props.match.params.taskId
       });
