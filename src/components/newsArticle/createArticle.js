@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import apiManager from "./apiManager";
 
 class CreateArticles extends Component {
   state = {

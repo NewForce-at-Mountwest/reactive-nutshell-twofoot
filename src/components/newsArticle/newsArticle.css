@@ -44,6 +44,8 @@
     border-left: 2px solid var(--color-main-light-brown);
     border-top: 2px solid var(--color-main-light-brown);
     border-radius: 10px;
+    margin-right: 2px;
+    margin-left: 2px;
 }
 
 .size1button{
@@ -56,6 +58,8 @@
     border-left: 2px solid var(--color-main-light-brown);
     border-top: 2px solid var(--color-main-light-brown);
     border-radius: 10px;
+    margin-right: 2px;
+    margin-left: 2px;
 }
 
 .navbar{

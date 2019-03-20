@@ -1,8 +1,8 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import ArticleList from "./newsArticle/articleList";
-import apiManager from "./newsArticle/apiManager";
 import CreateArticles from "./newsArticle/createArticle";
+import EditArticles from "./newsArticle/editArticle"
 
 export default class ApplicationViews extends Component {
   state = {
@@ -64,6 +64,19 @@ export default class ApplicationViews extends Component {
           render={props => {
             return (
               <CreateArticles
+                {...props}
+                news={this.state.news}
+                updateNews={this.updateNews}
+              />
+            );
+          }}
+        />
+
+        <Route
+          path="/news/:newsId(\d+)/edit"
+          render={props => {
+            return (
+              <EditArticles
                 {...props}
                 news={this.state.news}
                 updateNews={this.updateNews}

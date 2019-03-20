@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 var moment = require("moment");
 
 class ArticleBuilder extends Component {
@@ -24,12 +23,22 @@ class ArticleBuilder extends Component {
             </a>
             <p />
             <p>
-            <button
-              className="size1button"
-              onClick={() => this.props.deleteArticle(this.props.news.id)}
-            >
-              Delete
-            </button>
+              <button
+                className="size1button color-white"
+                onClick={() =>
+                  this.props.history.push(`/news/${this.props.news.id}/edit`)
+                }
+              >
+                Edit
+              </button>
+            </p>
+            <p>
+              <button
+                className="size1button"
+                onClick={() => this.props.deleteArticle(this.props.news.id)}
+              >
+                Delete
+              </button>
             </p>
           </div>
         </div>
