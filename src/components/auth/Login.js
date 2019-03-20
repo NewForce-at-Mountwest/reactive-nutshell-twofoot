@@ -1,9 +1,11 @@
 import React, { Component } from "react"
+import UserManager from '../../modules/UserManager'
 export default class Login extends Component {
     state = {
         email: "",
         password: "",
         username: ""
+
     }
 
     handleFieldChangeUser = evt => {
@@ -15,24 +17,18 @@ export default class Login extends Component {
 
       constructNewUser = evt => {
         evt.preventDefault();
-            const user = {
+            const userToPost = {
                 username: this.state.userName,
                 email: this.state.userEmail,
-                password: this.state.userPassword
+                password: this.state.userPassword,
             }
-            localStorage.setItem(
-                "credentials",
-                JSON.stringify(user)
-              );
-             sessionStorage.setItem(
-                "credentials",
-                JSON.stringify(user)
-              );
-            this.props
-                .addUser(user)
-                .then(() => this.props.history.push("/tasks"));
-        }
-
+    UserManager.getByEmail(this.state.email).then(user => {
+                this.props.registerUser(userToPost).then(user => {
+                    console.log(user);
+                    sessionStorage.setItem("credentials", JSON.stringify(user.id))
+                    localStorage.setItem("credentials", JSON.stringify(user.id));
+                    this.props.history.push("/");
+                    this.props.refreshUsers()})})}
 
 
     render() {

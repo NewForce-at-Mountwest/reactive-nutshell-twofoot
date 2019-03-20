@@ -18,11 +18,10 @@ export default class ApplicationViews extends Component {
   componentDidMount() {
     const newState = {};
     TaskManager.getAllTasks()
-      .then(allTasks => {
-        newState.tasks = allTasks
-        this.setState(newState)
-      }
-      )
+      .then(allTasks => { newState.tasks = allTasks })
+      .then(UserManager.getAllUsers)
+      .then(allUsers => { newState.users = allUsers })
+    this.setState(newState)
   }
   deleteTask = id => {
     return TaskManager.deleteTask(id).then(tasks =>
@@ -39,13 +38,16 @@ export default class ApplicationViews extends Component {
           tasks: tasks
         })
       );
-  addUser = user =>
-    UserManager.postUser(user)
-      .then(users =>
-        this.setState({
-          users: users
-        })
-      );
+  registerUser = userObject =>
+    UserManager.postUser(userObject);
+    
+  refreshUsers = () =>
+    UserManager.getAllUsers()
+      .then(parsedUsers => {
+        this.setState({ users: parsedUsers });
+      });
+
+
   editTask = editedTask => {
     return TaskManager.putTask(editedTask)
       .then(() => TaskManager.getAllTasks())
@@ -57,11 +59,11 @@ export default class ApplicationViews extends Component {
   };
   completeTask = (taskId, taskObject) => {
     return TaskManager.patchTask(taskObject, taskId)
-    .then(() => TaskManager.getAllTasks())
-    .then(tasks =>
-      this.setState({
-      tasks: tasks
-    }))
+      .then(() => TaskManager.getAllTasks())
+      .then(tasks =>
+        this.setState({
+          tasks: tasks
+        }))
   }
   render() {
     return (
@@ -75,12 +77,12 @@ export default class ApplicationViews extends Component {
             }
           }}
         />
-         <Route
+        <Route
           exact path="/login" render={props => {
-              return <Login {...props}
-              addUser={this.addUser}
-              users={this.props.users}/>;
-          }}/>
+            return <Login {...props}
+              registerUser={this.registerUser}
+              refreshUsers={this.refreshUsers} />;
+          }} />
 
         <Route
           path="/friends" render={props => {
@@ -101,25 +103,34 @@ export default class ApplicationViews extends Component {
             }
           }}
         />
+        <Route
+          path="/events" render={props => {
+            if (this.isAuthenticated()) {
+              return <null />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
 
         <Route
           exact path="/tasks" render={props => {
             if (this.isAuthenticated()) {
-            return <TaskList {...props}
-              addTask={this.addTask}
-              tasks={this.state.tasks}
-              deleteTask={this.deleteTask}
-              completeTask={this.completeTask} />
+              return <TaskList {...props}
+                addTask={this.addTask}
+                tasks={this.state.tasks}
+                deleteTask={this.deleteTask}
+                completeTask={this.completeTask} />
             } else {
               return <Redirect to="/login" />;
             }
-           }} />
+          }} />
         <Route
           exact path="/tasks/new" render={props => {
             if (this.isAuthenticated()) {
-            return <TaskBuilder {...props}
-              addTask={this.addTask}
-              tasks={this.state.tasks} />
+              return <TaskBuilder {...props}
+                addTask={this.addTask}
+                tasks={this.state.tasks} />
             } else {
               return <Redirect to="/login" />;
             }
@@ -128,12 +139,14 @@ export default class ApplicationViews extends Component {
           path="/tasks/:taskId(\d+)/edit"
           render={props => {
             if (this.isAuthenticated()) {
-            return  <TaskEditForm {...props}
+              return <TaskEditForm {...props}
                 tasks={this.state.tasks}
-                editTask={this.editTask}/>
-              } else {
-                return <Redirect to="/login" />;
-              }
-            }}/>
-        </React.Fragment>
-    )}}
+                editTask={this.editTask} />
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }} />
+      </React.Fragment>
+    )
+  }
+}
