@@ -1,0 +1,18 @@
+.list-group{
+    align-content: center;
+    width: 40%;
+    margin-top: 40px;
+
+
+}
+
+li .list-group{
+    background-color: aquamarine
+}
+
+.friendDelete{
+    display: flex;
+    justify-content: center
+
+
+}
