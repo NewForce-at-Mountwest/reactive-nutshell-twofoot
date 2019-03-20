@@ -28,7 +28,7 @@ class CreateArticles extends Component {
       timestamp: now,
       userId: userId
     };
-    fetch(`http://localhost:8080/news`, {
+    fetch(`http://localhost:5002/news`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createArticle)

@@ -31,7 +31,7 @@ class EditArticles extends Component {
       userId: userId
     };
 
-    fetch(`http://localhost:8080/news/${this.props.match.params.newsId}`, {
+    fetch(`http://localhost:5002/news/${this.props.match.params.newsId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createArticle)
@@ -41,7 +41,7 @@ class EditArticles extends Component {
   };
 
   componentDidMount(){
-    fetch(`http://localhost:8080/news/${this.props.match.params.newsId}`)
+    fetch(`http://localhost:5002/news/${this.props.match.params.newsId}`)
     .then(news => news.json())
     .then(news=>{
       this.setState({
