@@ -25,7 +25,6 @@ export default class Login extends Component {
                 this.props.registerUser(userToPost).then(user => {
                     console.log(user);
                     sessionStorage.setItem("credentials", JSON.stringify(user.id));
-                    localStorage.setItem("credentials", JSON.stringify(user.id));
                     this.props.history.push("/");
                     this.props.refreshUsers()})})}
 
