@@ -34,9 +34,9 @@ export default class ApplicationViews extends Component {
   addFriend = (friendId) => {
 
   return friendsAPI.addFriend(friendId)
-      // .then(friends => this.setState({
-      //   friends: friends
-      // }))
+      .then(friends => this.setState({
+        friends: friends
+      }))
   }
 
 

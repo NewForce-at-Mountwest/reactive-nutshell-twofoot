@@ -21,32 +21,35 @@ export default class FriendsList extends Component {
 
     addNewFriend = evt =>{
         evt.preventDefault();
-        const y = this.state.name
-        const x = this.state.otherId
-        console.log(x)
-        // const friendId = this.props.findFriend(this.state.name)
+        this.props.findFriend(this.state.name).then((singleFriend)=> {
+            console.log(singleFriend)
         const friendship = {
             userId: "1", //get from session storage
-            otherId: x
+            otherId: JSON.stringify(singleFriend[0].id)
 
         }
         console.log(friendship)
         this.props.addFriend(friendship)
 
-        // .then(()=> this.props.history.push("/friends"))
 
 
+         })
     };
 
 
 
 
+
+
     render() {
-        let currentUser = "1"
-        let friendsList = []
-        let friendNames = []
-        let x = this.props.findFriend(this.state.name)
-        console.log(x)
+        const currentUser = "1"
+        const friendsList = []
+        const friendNames = []
+        this.props.findFriend(this.state.name).then((x)=> {
+                console.log(x)
+        })
+
+
 
 
 
@@ -117,23 +120,6 @@ export default class FriendsList extends Component {
                         Add Friend
                     </button>
                 </div>
-                <label htmlFor="otherId"></label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              onChange={this.handleFieldChange}
-              id="otherId"
-              placeholder="confirm friend"
-              value={x}
-              />
-
-              {<div>{this.state.name}{this.state.otherId}
-              <button onClick={this.addNewFriend}>Confirm</button>
-
-
-              </div>}
-
 
 
 
