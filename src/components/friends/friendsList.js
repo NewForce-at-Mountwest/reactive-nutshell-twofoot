@@ -76,7 +76,7 @@ export default class FriendsList extends Component {
         friendsList.map(friend =>
             this.props.users.map(user => {
                 if (user.id === +friend[0]) {
-                     friendNames.push([user.username,friend[1].id])
+                      friendNames.push([user.username,friend[1].id])
                 }
             })
         )
@@ -89,12 +89,12 @@ export default class FriendsList extends Component {
 
 
                         <ul className="list-group">
-                            <li className="list-group-item active">Your Friend List</li>
+                            <li className="list-group-item active"><i class="fas fa-user-friends"></i> Your Friend List</li>
                             {
                                 friendNames.map(name =>
 
-                                    <li  key={+name[1]} className="list-group-item" >{name[0]} <button onClick={() => this.props.deleteFriend(name[1])
-                                    } className="fas fa-trash friendDelete" ></button> </li>
+                                    <li  key={+name[1]} className="list-group-item" >{name[0]} <button onClick={() => this.props.deleteFriend(name[1])} className="fas fa-trash friendDelete" ></button> </li>
+
 
 
 
@@ -117,7 +117,7 @@ export default class FriendsList extends Component {
                     <button type="button"
                         className="btn btn-success"
                         onClick={this.addNewFriend}>
-                        Add Friend
+                        + Add Friend
                     </button>
                 </div>
 
