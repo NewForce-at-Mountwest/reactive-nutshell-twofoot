@@ -108,39 +108,48 @@ export default class ApplicationViews extends Component {
           exact
           path="/"
           render={props => {
+            if(this.isAuthenticated()){
             return (
               <ArticleList
                 {...props}
                 news={this.state.news}
                 deleteArticle={this.deleteArticle}
               />
-            );
+            )} else {
+              return <Redirect to="/login" />
+            }
           }}
         />
 
         <Route
           path="/create-article"
           render={props => {
+            if(this.isAuthenticated()){
             return (
               <CreateArticles
                 {...props}
                 news={this.state.news}
                 updateNews={this.updateNews}
               />
-            );
+            )} else {
+              return <Redirect to="/login" />
+            }
           }}
         />
 
         <Route
           path="/news/:newsId(\d+)/edit"
           render={props => {
+            if(this.isAuthenticated()){
             return (
               <EditArticles
                 {...props}
                 news={this.state.news}
                 updateNews={this.updateNews}
               />
-            );
+            )} else {
+              return <Redirect to="/login" />
+            }
           }}
         />
         <Route
