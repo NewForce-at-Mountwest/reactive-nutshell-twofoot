@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom"
 import Nutshell from './components/Nutshell'
 
 import './index.css'
+import './components/newsArticle/newsArticle.css'
 
 ReactDOM.render(
   <Router>
