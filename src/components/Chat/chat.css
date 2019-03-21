@@ -1,0 +1,17 @@
+.chat-name{
+    font-weight: bold;
+}
+.chat-input{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+}
+.chat-messages{
+    overflow: scroll;
+    height: 90vh;
+    position: relative;
+    bottom: 0;
+}
+#message{
+    width:80vw;
+}
