@@ -24,7 +24,7 @@ export default class FriendsList extends Component {
         this.props.findFriend(this.state.name).then((singleFriend)=> {
             console.log(singleFriend)
         const friendship = {
-            userId: "1", //get from session storage
+            userId: sessionStorage.getItem("credentials"), //get from session storage
             otherId: JSON.stringify(singleFriend[0].id)
 
         }
@@ -42,7 +42,7 @@ export default class FriendsList extends Component {
 
 
     render() {
-        const currentUser = "1"
+        const currentUser = sessionStorage.getItem("credentials")
         const friendsList = []
         const friendNames = []
         this.props.findFriend(this.state.name).then((x)=> {
@@ -85,15 +85,15 @@ export default class FriendsList extends Component {
 
         return (
             <React.Fragment>
-
+                <div className="friendsDivHeader">
 
 
                         <ul className="list-group">
-                            <li className="list-group-item active"><i class="fas fa-user-friends"></i> Your Friend List</li>
+                            <li className="list-group-item newsDivHeader2"><i className="fas fa-user-friends"></i> Your Friend List</li>
                             {
                                 friendNames.map(name =>
 
-                                    <li  key={+name[1]} className="list-group-item" >{name[0]} <button onClick={() => this.props.deleteFriend(name[1])} className="fas fa-trash friendDelete" ></button> </li>
+                                    <li  key={+name[1]} className="list-group-item" >{name[0]} <button onClick={() => this.props.deleteFriend(name[1])} className="fas fa-trash friendDelete size1button" ></button> </li>
 
 
 
@@ -101,7 +101,7 @@ export default class FriendsList extends Component {
 
 
                                 )
-                            }  </ul>
+                            }  </ul >
 
                 <div className="addFriend">
 
@@ -115,14 +115,14 @@ export default class FriendsList extends Component {
               placeholder="Enter Friends Name"/>
 
                     <button type="button"
-                        className="btn btn-success"
+                        className="size1button"
                         onClick={this.addNewFriend}>
                         + Add Friend
                     </button>
                 </div>
 
 
-
+</div>
             </React.Fragment>
 
 

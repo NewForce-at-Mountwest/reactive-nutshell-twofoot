@@ -7,7 +7,7 @@ export default class TaskList extends Component {
       <div className="newsDivHeader">
         <div className="addButton">
           <button type="button"
-            className="btn btn-success size1button"
+            className="size1button"
             onClick={() => {
               this.props.history.push(`/tasks/new`)
             }

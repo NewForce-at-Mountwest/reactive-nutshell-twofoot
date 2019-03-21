@@ -114,7 +114,7 @@ export default class ApplicationViews extends Component {
       .then(parsedNews => {
         this.setState({ news: parsedNews });
       })
-      .then(friendsAPI.getFriends)
+      .then(friendsAPI.getFriends())
       .then(friends => ( newState.friends = friends ))
       .then(TaskManager.getAllTasks())
       .then(allTasks => { newState.tasks = allTasks })

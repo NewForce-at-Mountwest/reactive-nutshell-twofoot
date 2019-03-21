@@ -3,6 +3,7 @@
     --color-main-brown: #ce9363;
     --color-main-dark-brown: #a5764f;
     --color-main-light-brown: #ffb477;
+    background-color: #72afb2;
 }
 
 .newsDiv {
@@ -19,9 +20,21 @@
     padding-bottom: 52vh;
 }
 
+.friendsDivHeader {
+    text-align: center;
+    background-color: var(--color-main-blue);
+    padding-top: 25px;
+}
+
 .newsDivHeader {
     text-align: center;
     background-color: var(--color-main-blue);
+    padding-top: 25px;
+}
+
+.newsDivHeader2 {
+    text-align: center;
+    background-color: var(--color-main-brown);
     padding-top: 25px;
 }
 
@@ -131,4 +144,17 @@ a:hover{
     background-color: var(--color-main-brown);
     border: 2px solid var(--color-main-dark-brown);
     border-radius: 5px;
+}
+
+#name{
+    width: 100%;
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
+    border-radius: 5px;
+}
+
+
+.list-group-item{
+    background-color: var(--color-main-brown);
+    border: 2px solid var(--color-main-dark-brown);
 }
