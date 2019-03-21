@@ -1,5 +1,9 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import EventList from "./events/eventList"
+import EventBuilder from "./events/eventBuilder"
+import EventApiManager from "./events/eventApiManager"
+import EventEditForm from "./events/eventEditForm"
 import ArticleList from "./newsArticle/articleList";
 import CreateArticles from "./newsArticle/createArticle";
 import EditArticles from "./newsArticle/editArticle"
@@ -52,13 +56,33 @@ export default class ApplicationViews extends Component {
       })
       .then(TaskManager.getAllTasks())
       .then(allTasks => { newState.tasks = allTasks })
-        .then(UserManager.getAllUsers)
-        .then(allUsers => { newState.users = allUsers })
-      this.setState(newState)
+      .then(UserManager.getAllUsers)
+      .then(allUsers => { newState.users = allUsers })
+      .then(EventApiManager.getAllEvents())
+      .then(events => { newState.events = events
+        // this.setState(newState)
+      })
   }
 
   isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
+  // Event Api Calls
+
+  addEvent = eventObject =>
+    EventApiManager.postEvent(eventObject)
+      .then(() => EventApiManager.getAllEvents())
+      .then(events => this.setState({ events: events }))
+
+  deleteEvent = id =>
+    EventApiManager.deleteEvent(id).then(events =>
+      this.setState({ events: events }))
+
+  updateEvent = editedEventObject => {
+    return EventApiManager.putEvent(editedEventObject)
+      .then(() => EventApiManager.getAllEvents())
+      .then(events => this.setState({ events: events }))
+  }
+  // End of Event Api Calls
   deleteTask = id => {
     return TaskManager.deleteTask(id).then(tasks =>
       this.setState({
@@ -108,14 +132,15 @@ export default class ApplicationViews extends Component {
           exact
           path="/"
           render={props => {
-            if(this.isAuthenticated()){
-            return (
-              <ArticleList
-                {...props}
-                news={this.state.news}
-                deleteArticle={this.deleteArticle}
-              />
-            )} else {
+            if (this.isAuthenticated()) {
+              return (
+                <ArticleList
+                  {...props}
+                  news={this.state.news}
+                  deleteArticle={this.deleteArticle}
+                />
+              )
+            } else {
               return <Redirect to="/login" />
             }
           }}
@@ -124,14 +149,15 @@ export default class ApplicationViews extends Component {
         <Route
           path="/create-article"
           render={props => {
-            if(this.isAuthenticated()){
-            return (
-              <CreateArticles
-                {...props}
-                news={this.state.news}
-                updateNews={this.updateNews}
-              />
-            )} else {
+            if (this.isAuthenticated()) {
+              return (
+                <CreateArticles
+                  {...props}
+                  news={this.state.news}
+                  updateNews={this.updateNews}
+                />
+              )
+            } else {
               return <Redirect to="/login" />
             }
           }}
@@ -140,14 +166,15 @@ export default class ApplicationViews extends Component {
         <Route
           path="/news/:newsId(\d+)/edit"
           render={props => {
-            if(this.isAuthenticated()){
-            return (
-              <EditArticles
-                {...props}
-                news={this.state.news}
-                updateNews={this.updateNews}
-              />
-            )} else {
+            if (this.isAuthenticated()) {
+              return (
+                <EditArticles
+                  {...props}
+                  news={this.state.news}
+                  updateNews={this.updateNews}
+                />
+              )
+            } else {
               return <Redirect to="/login" />
             }
           }}
@@ -187,6 +214,27 @@ export default class ApplicationViews extends Component {
             }
           }}
         />
+    <Route exact
+      path="/events" render={props => {
+        return <EventList {...props}
+          deleteEvent={this.deleteEvent}
+          events={this.state.events} />
+      }}
+    />
+      <Route path="/events/:eventId(\d+)/edit"
+        render={props => {
+          return (
+            <EventEditForm
+              {...props}
+              updateEvent={this.updateEvent}
+              events={this.state.events} />
+          )
+        }} />
+      <Route
+        path="/events/new" render={props => {
+          return <EventBuilder {...props} addEvent={this.addEvent} />
+        }}
+      />
 
         <Route
           exact path="/tasks" render={props => {
@@ -221,7 +269,7 @@ export default class ApplicationViews extends Component {
               return <Redirect to="/login" />;
             }
           }} />
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 }
