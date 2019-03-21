@@ -11,9 +11,10 @@
     justify-content: space-evenly;
 
 }
-.card-event:nth-last-child(-1n+1){
+.card-event:nth-last-child(1){
     background-color: #ce9363;
 }
+
 .event-attempt-btn {
     display: flex;
     justify-content: space-evenly;
