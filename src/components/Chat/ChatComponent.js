@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "../newsArticle/newsArticle.css"
 import './chat.css';
 import MessageComponent from './MessageComponent';
 
@@ -32,20 +33,20 @@ export default class ChatComponent extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div className="chat-messages" id="chat-messages">
+				<div className="chat-messages" id="chat-messages" key={this.state.userId}>
 					{this.props.messages.map((message) => {
 						return <MessageComponent {...this.props} message={message} route={this.props.route} />;
 					})}
 				</div>
 				<div className="chat-input">
-					<form className="form-control">
+					<form className="form-control chat">
 						<input
 							type="text"
 							id="message"
 							placeholder="Don't be shy! Say Hi!"
 							onChange={this.handleFieldChange}
 						/>
-						<button type="submit" onClick={this.Message} className="btn btn-primary">
+						<button type="submit" onClick={this.Message} className="btn size1button">
 							Submit
 						</button>
 					</form>

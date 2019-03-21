@@ -6,7 +6,7 @@ export default class MessageComponent extends Component {
 			return (
 				<button
 					type="button"
-					className="btn btn-primary"
+					className="btn size1button"
 					onClick={() => {
 						this.props.history.push(`/${this.props.route}/${this.props.message.id}/edit`);
 					}}
@@ -23,7 +23,7 @@ export default class MessageComponent extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div key={this.props.message.id}>
+				<div key={this.props.message.id} className="chat">
 					<span id={this.props.message.userId} className="chat-name" onClick={this.handleFriendship}>
 						{this.props.message.user.username.split(' ')[0]}:
 					</span>{' '}

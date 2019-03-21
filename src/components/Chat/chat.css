@@ -1,16 +1,22 @@
 .chat-name{
     font-weight: bold;
+    background-color: var(--color-main-blue);
 }
 .chat-input{
     position: fixed;
-    bottom: 0;
+    bottom: 10px;
     width: 100vw;
+    background-color: var(--color-main-blue);
 }
 .chat-messages{
     overflow: scroll;
     height: 90vh;
     position: relative;
     bottom: 0;
+    background-color: var(--color-main-blue);
+}
+.chat{
+    background-color: var(--color-main-blue);
 }
 #message{
     width:80vw;
