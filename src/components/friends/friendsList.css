@@ -16,3 +16,10 @@ li .list-group{
 
 
 }
+
+.friends{
+    display: flex;
+    flex-direction: row;
+
+
+}

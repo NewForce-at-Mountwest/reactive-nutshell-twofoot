@@ -12,27 +12,31 @@ export default {
 
 
 
-    getFriends: () => {
+    getFriends ()  {
         return fetch(`${remoteURL}/friends`)
-        .then(r => r.json());
+        .then(r => r.json())
 
     },
-    getFriendsUserId: (currentUser) => {
+    getFriendName (searchName)  {
+        return fetch(`${remoteURL}/users?username=${searchName}`)
+        .then(n => n.json())
+    },
+    getFriendsUserId (currentUser)  {
         return fetch(`${remoteURL}/friends?userId=${currentUser}`)
         .then(r => r.json())
 
 
     },
-    getFriendsOther: (currentUser) => {
+    getFriendsOther (currentUser)  {
         return fetch(`${remoteURL}/friends?otherId=${currentUser}`)
         .then(r => r.json());
     },
-    getFriendTableRelationId: (otherId, userId) => {
+    getFriendTableRelationId (otherId, userId)  {
         return fetch(`${remoteURL}/friends?otherId=${otherId}&&userId=${userId}`)
         .then(r => r.json())
 
     },
-    addFriend: (newFriend) => {
+    addFriend (newFriend)  {
         return fetch (`${remoteURL}/friends`, {
             method: "POST",
             headers: {
@@ -42,7 +46,7 @@ export default {
 
         }).then(f => f.json())
     },
-    deleteFriend: (friendId) => {
+    deleteFriend (friendId)  {
         return fetch(`${remoteURL}/friends/${friendId}`, {
             method: "DELETE"
              }).then(f=>f.json())

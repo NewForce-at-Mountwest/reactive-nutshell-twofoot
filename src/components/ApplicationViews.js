@@ -2,60 +2,62 @@ import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import FriendsList from "./friends/friendsList";
 import friendsAPI from "./friends/friendsAPI";
-// import FriendsView from "./friends/friendsList"
+
+
 
 
 export default class ApplicationViews extends Component {
 
   state = {
     users: [],
-    friends: []
+    friends: [],
+    otherId:[]
   }
 
 
 
   deleteFriend = userId => {
     return friendsAPI.deleteFriend(userId)
-    .then(friends => this.setState({
-      friends:friends
-    }))
+      .then(friends => this.setState({
+        friends: friends
+      }))
   }
 
-  getFriendObject = (otherId,userId) => {
-    return  friendsAPI.getFriendTableRelationId(otherId,userId)
-    .then(friends => this.setState({
-      friends:friends
-    }))
+  findFriend = name => {
+    return friendsAPI.getFriendName(name)
+
+
+
+
   }
+
+  addFriend = (friendId) => {
+
+  return friendsAPI.addFriend(friendId)
+      // .then(friends => this.setState({
+      //   friends: friends
+      // }))
+  }
+
 
 
   componentDidMount() {
     const newState = {}
-    const currentUser = "1"   //<-----set this in future with session storage at login****//
-
+    // const currentUser = "1"   //<-----set this in future with session storage at login****//
 
     ////set Friends state/////
     friendsAPI.getFriends()
-      .then(friends => { newState.friends = friends })
+      .then(friends => ( newState.friends = friends ))
       .then(friendsAPI.getUsers)
-      .then(users => {
-        newState.users = users
-        this.setState(newState)
-      })
+      .then(users => (newState.users = users))
+      .then(()=> this.setState(newState))
+
 
     console.log(newState)
-
-
-
-
-
-
-
   }
 
 
-
-  render() {
+render() {
 
 
     return (
@@ -69,22 +71,18 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          exact path="/friends" render={props => {
+           path="/friends" render={props => {
             return <FriendsList
+              {...props}
               users={this.state.users}
               friends={this.state.friends}
               deleteFriend={this.deleteFriend}
-              getFriendObject={this.getFriendObject} />
+              getFriendObject={this.getFriendObject}
+              addFriend={this.addFriend}
+              findFriend={this.findFriend} />
           }} />
-          {/* <Route exact path="/transactions/:transactionsId(\d+)" render={(props) => {
-                     return <FriendDetail
-                             {...props}
-                             users={this.state.users}
-                             friends={this.state.friends}
-                             deleteFriend={this.deleteFriend}
-                             getFriendObject={this.getFriendObject}
-                              />
-                }}/> */}
+
+
 
 
 
