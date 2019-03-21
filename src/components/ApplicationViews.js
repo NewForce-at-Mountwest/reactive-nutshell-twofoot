@@ -11,6 +11,10 @@ import TaskEditForm from './tasks/TaskEditForm';
 import UserManager from '../modules/UserManager';
 import ChatComponent from './Chat/ChatComponent';
 import MessageEditForm from './Chat/MessageEditForm';
+import EventList from './events/eventList';
+import EventBuilder from './events/eventBuilder';
+import EventApiManager from './events/eventApiManager';
+import EventEditForm from './events/eventEditForm';
 
 export default class ApplicationViews extends Component {
 	state = {
@@ -21,6 +25,13 @@ export default class ApplicationViews extends Component {
 		events: [],
 		friends: [],
 		messages: []
+	};
+
+	//News Section
+	updateNews = () => {
+		fetch(`http://localhost:5002/news`).then((news) => news.json()).then((parsedNews) => {
+			this.setState({ news: parsedNews });
+		});
 	};
 
 	updateNews = () => {
@@ -44,40 +55,25 @@ export default class ApplicationViews extends Component {
 		this.articleDelete(id);
 	};
 
-	componentDidMount() {
-		const newState = {};
-		fetch(`http://localhost:5002/news`).then((news) => news.json()).then((parsedNews) => {
-			newState.news = parsedNews;
-			TaskManager.getAllTasks().then((allTasks) => {
-				newState.tasks = allTasks;
-				UserManager.getAllUsers().then((allUsers) => {
-					newState.users = allUsers;
-					return fetch('http://localhost:5002/messages?_expand=user')
-						.then((r) => r.json())
-						.then((messages) => {
-							newState.messages = messages;
-							this.setState(newState);
-						});
-				});
-			});
-		});
-	}
+	// Event Api Calls
 
+	addEvent = (eventObject) =>
+		EventApiManager.postEvent(eventObject)
+			.then(() => EventApiManager.getAllEvents())
+			.then((events) => this.setState({ events: events }));
+
+	deleteEvent = (id) => EventApiManager.deleteEvent(id).then((events) => this.setState({ events: events }));
+
+	updateEvent = (editedEventObject) => {
+		return EventApiManager.putEvent(editedEventObject)
+			.then(() => EventApiManager.getAllEvents())
+			.then((events) => this.setState({ events: events }));
+	};
+	// End of Event Api Calls
+
+	//User Management
 	isAuthenticated = () => sessionStorage.getItem('credentials') !== null;
 
-	deleteTask = (id) => {
-		return TaskManager.deleteTask(id).then((tasks) =>
-			this.setState({
-				tasks: tasks
-			})
-		);
-	};
-	addTask = (task) =>
-		TaskManager.postTask(task).then(() => TaskManager.getAllTasks()).then((tasks) =>
-			this.setState({
-				tasks: tasks
-			})
-		);
 	registerUser = (userObject) => UserManager.postUser(userObject);
 
 	refreshUsers = () =>
@@ -85,20 +81,8 @@ export default class ApplicationViews extends Component {
 			this.setState({ users: parsedUsers });
 		});
 
-	editTask = (editedTask) => {
-		return TaskManager.putTask(editedTask).then(() => TaskManager.getAllTasks()).then((tasks) => {
-			this.setState({
-				tasks: tasks
-			});
-		});
-	};
-	completeTask = (taskId, taskObject) => {
-		return TaskManager.patchTask(taskObject, taskId).then(() => TaskManager.getAllTasks()).then((tasks) =>
-			this.setState({
-				tasks: tasks
-			})
-		);
-	};
+	//Messages
+
 	addMessage = (newItem) => {
 		return fetch(`http://localhost:5002/messages`, {
 			method: 'POST',
@@ -131,6 +115,61 @@ export default class ApplicationViews extends Component {
 				})
 			);
 	};
+
+	//Tasks Sections
+
+	deleteTask = (id) => {
+		return TaskManager.deleteTask(id).then((tasks) =>
+			this.setState({
+				tasks: tasks
+			})
+		);
+	};
+	addTask = (task) =>
+		TaskManager.postTask(task).then(() => TaskManager.getAllTasks()).then((tasks) =>
+			this.setState({
+				tasks: tasks
+			})
+		);
+
+	editTask = (editedTask) => {
+		return TaskManager.putTask(editedTask).then(() => TaskManager.getAllTasks()).then((tasks) => {
+			this.setState({
+				tasks: tasks
+			});
+		});
+	};
+	completeTask = (taskId, taskObject) => {
+		return TaskManager.patchTask(taskObject, taskId).then(() => TaskManager.getAllTasks()).then((tasks) =>
+			this.setState({
+				tasks: tasks
+			})
+		);
+	};
+
+	//Component Did Mount API Calls and Intial State set
+	componentDidMount() {
+		const newState = {};
+		fetch(`http://localhost:5002/news`).then((news) => news.json()).then((parsedNews) => {
+			newState.news = parsedNews;
+			TaskManager.getAllTasks().then((allTasks) => {
+				newState.tasks = allTasks;
+				UserManager.getAllUsers().then((allUsers) => {
+					newState.users = allUsers;
+					return fetch('http://localhost:5002/messages?_expand=user')
+						.then((r) => r.json())
+						.then((messages) => {
+							newState.messages = messages;
+							EventApiManager.getAllEvents().then((events) => {
+								newState.events = events;
+								this.setState(newState);
+							});
+						});
+				});
+			});
+		});
+	}
+
 	render() {
 		return (
 			<React.Fragment>
@@ -156,7 +195,6 @@ export default class ApplicationViews extends Component {
 						}
 					}}
 				/>
-
 				<Route
 					path="/news/:newsId(\d+)/edit"
 					render={(props) => {
@@ -172,17 +210,6 @@ export default class ApplicationViews extends Component {
 					path="/login"
 					render={(props) => {
 						return <Login {...props} registerUser={this.registerUser} refreshUsers={this.refreshUsers} />;
-					}}
-				/>
-
-				<Route
-					path="/friends"
-					render={(props) => {
-						if (this.isAuthenticated()) {
-							return null;
-						} else {
-							return <Redirect to="/login" />;
-						}
 					}}
 				/>
 				<Route
@@ -215,14 +242,28 @@ export default class ApplicationViews extends Component {
 						}
 					}}
 				/>
+
 				<Route
+					exact
 					path="/events"
 					render={(props) => {
 						if (this.isAuthenticated()) {
-							return null;
+							return <EventList {...props} deleteEvent={this.deleteEvent} events={this.state.events} />;
 						} else {
 							return <Redirect to="/login" />;
 						}
+					}}
+				/>
+				<Route
+					path="/events/:eventId(\d+)/edit"
+					render={(props) => {
+						return <EventEditForm {...props} updateEvent={this.updateEvent} events={this.state.events} />;
+					}}
+				/>
+				<Route
+					path="/events/new"
+					render={(props) => {
+						return <EventBuilder {...props} addEvent={this.addEvent} />;
 					}}
 				/>
 
