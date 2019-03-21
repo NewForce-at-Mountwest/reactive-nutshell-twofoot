@@ -20,7 +20,7 @@ export default class ResourceEditForm extends Component {
 		const editedMessage = {
 			id: this.props.match.params.messageId,
 			message: this.state.message,
-			userId: sessionStorage.getItem('userId')
+			userId: sessionStorage.getItem('credentials')
 		};
 
 		this.props.updateResource(editedMessage).then(() => this.props.history.push(`/${this.props.route}`));

@@ -46,20 +46,21 @@ export default class ApplicationViews extends Component {
 
 	componentDidMount() {
 		const newState = {};
-		fetch(`http://localhost:5002/news`)
-			.then((news) => news.json())
-			.then((parsedNews) => {
-				this.setState({ news: parsedNews });
-			})
-			.then(TaskManager.getAllTasks())
-			.then((allTasks) => {
+		fetch(`http://localhost:5002/news`).then((news) => news.json()).then((parsedNews) => {
+			newState.news = parsedNews;
+			TaskManager.getAllTasks().then((allTasks) => {
 				newState.tasks = allTasks;
-			})
-			.then(UserManager.getAllUsers)
-			.then((allUsers) => {
-				newState.users = allUsers;
+				UserManager.getAllUsers().then((allUsers) => {
+					newState.users = allUsers;
+					return fetch('http://localhost:5002/messages?_expand=user')
+						.then((r) => r.json())
+						.then((messages) => {
+							newState.messages = messages;
+							this.setState(newState);
+						});
+				});
 			});
-		this.setState(newState);
+		});
 	}
 
 	isAuthenticated = () => sessionStorage.getItem('credentials') !== null;
