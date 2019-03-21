@@ -1,5 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import ArticleList from "./newsArticle/articleList";
+import CreateArticles from "./newsArticle/createArticle";
+import EditArticles from "./newsArticle/editArticle"
 import Login from "./auth/Login";
 import TaskList from "./tasks/TaskList"
 import TaskBuilder from './tasks/TaskBuilder'
@@ -8,21 +11,54 @@ import TaskEditForm from "./tasks/TaskEditForm";
 import UserManager from '../modules/UserManager'
 export default class ApplicationViews extends Component {
   state = {
+    news: [],
+    username: [],
     users: [],
     tasks: [],
     events: [],
     friends: [],
     messages: []
   };
-  isAuthenticated = () => sessionStorage.getItem("credentials") !== null || localStorage.getItem("credentials") !== null;
+
+  updateNews = () => {
+    fetch(`http://localhost:5002/news`)
+      .then(news => news.json())
+      .then(parsedNews => {
+        this.setState({ news: parsedNews });
+      });
+  };
+
+  articleDelete = id => {
+    fetch(`http://localhost:5002/news/${id}`, {
+      method: "DELETE"
+    })
+      .then(() => fetch(`http://localhost:5002/news?_expand=user`))
+      .then(news => news.json())
+      .then(parsedNews => {
+        this.setState({ news: parsedNews });
+      });
+  };
+
+  deleteArticle = id => {
+    this.articleDelete(id);
+  };
+
   componentDidMount() {
     const newState = {};
-    TaskManager.getAllTasks()
+    fetch(`http://localhost:5002/news`)
+      .then(news => news.json())
+      .then(parsedNews => {
+        this.setState({ news: parsedNews });
+      })
+      .then(TaskManager.getAllTasks())
       .then(allTasks => { newState.tasks = allTasks })
-      .then(UserManager.getAllUsers)
-      .then(allUsers => { newState.users = allUsers })
-    this.setState(newState)
+        .then(UserManager.getAllUsers)
+        .then(allUsers => { newState.users = allUsers })
+      this.setState(newState)
   }
+
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+
   deleteTask = id => {
     return TaskManager.deleteTask(id).then(tasks =>
       this.setState({
@@ -40,7 +76,7 @@ export default class ApplicationViews extends Component {
       );
   registerUser = userObject =>
     UserManager.postUser(userObject);
-    
+
   refreshUsers = () =>
     UserManager.getAllUsers()
       .then(parsedUsers => {
@@ -69,11 +105,50 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         <Route
-          exact path="/" render={props => {
-            if (this.isAuthenticated()) {
-              return <null />;
-            } else {
-              return <Redirect to="/login" />;
+          exact
+          path="/"
+          render={props => {
+            if(this.isAuthenticated()){
+            return (
+              <ArticleList
+                {...props}
+                news={this.state.news}
+                deleteArticle={this.deleteArticle}
+              />
+            )} else {
+              return <Redirect to="/login" />
+            }
+          }}
+        />
+
+        <Route
+          path="/create-article"
+          render={props => {
+            if(this.isAuthenticated()){
+            return (
+              <CreateArticles
+                {...props}
+                news={this.state.news}
+                updateNews={this.updateNews}
+              />
+            )} else {
+              return <Redirect to="/login" />
+            }
+          }}
+        />
+
+        <Route
+          path="/news/:newsId(\d+)/edit"
+          render={props => {
+            if(this.isAuthenticated()){
+            return (
+              <EditArticles
+                {...props}
+                news={this.state.news}
+                updateNews={this.updateNews}
+              />
+            )} else {
+              return <Redirect to="/login" />
             }
           }}
         />
@@ -87,7 +162,7 @@ export default class ApplicationViews extends Component {
         <Route
           path="/friends" render={props => {
             if (this.isAuthenticated()) {
-              return <null />;
+              return null;
             } else {
               return <Redirect to="/login" />;
             }
@@ -97,7 +172,7 @@ export default class ApplicationViews extends Component {
         <Route
           path="/messages" render={props => {
             if (this.isAuthenticated()) {
-              return <null />;
+              return null;
             } else {
               return <Redirect to="/login" />;
             }
@@ -106,7 +181,7 @@ export default class ApplicationViews extends Component {
         <Route
           path="/events" render={props => {
             if (this.isAuthenticated()) {
-              return <null />;
+              return null;
             } else {
               return <Redirect to="/login" />;
             }

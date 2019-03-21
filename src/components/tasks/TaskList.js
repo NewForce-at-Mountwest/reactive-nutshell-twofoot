@@ -3,10 +3,11 @@ import React, { Component } from "react"
 export default class TaskList extends Component {
   render() {
     return (
-      <React.Fragment>
+      <React.Fragment >
+      <div className="newsDivHeader">
         <div className="addButton">
           <button type="button"
-            className="btn btn-success"
+            className="btn btn-success size1button"
             onClick={() => {
               this.props.history.push(`/tasks/new`)
             }
@@ -15,25 +16,25 @@ export default class TaskList extends Component {
             </button>
         </div>
         <article>
-          <h1>Tasks</h1>
+          <h1 className="newsDivHeader">Tasks</h1>
           {this.props.tasks.map(task => {
             if (task.isCompleted === false && task.userId === sessionStorage.getItem('credentials')) {
-              return <div key={task.id}>
+              return <div className="newsDivHeader" key={task.id}>
                 {task.name}<p><input type="checkbox" onChange={() => this.props.completeTask({ isCompleted: true }, task.id)}></input>Finished?</p>
                 <p>{task.completionDate}</p>
-                <button onClick={() =>
+                <button className="size1button" onClick={() =>
                   this.props
                     .deleteTask(task.id)
                     .then(() => this.props.history.push("/tasks"))
                 }>Remove task</button>
-                <button onClick={() =>
+                <button className="size1button" onClick={() =>
                   this.props.history.push(`/tasks/${task.id}/edit`)
                 }>Edit task</button>
               </div>
             }
           }
           )}
-        </article>
+        </article></div>
       </React.Fragment>
     )
   }
