@@ -19,9 +19,7 @@ class ArticleList extends Component {
         </p>
           <div className="newsDiv">
             {this.props.news.map(news => (
-
               <ArticleBuilder {...this.props} deleteArticle={this.props.deleteArticle}  key={news.id} news={news} />
-
             ))}
           </div>
       </div>

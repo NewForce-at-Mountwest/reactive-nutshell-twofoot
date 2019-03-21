@@ -57,7 +57,7 @@ export default class ApplicationViews extends Component {
       this.setState(newState)
   }
 
-  isAuthenticated = () => sessionStorage.getItem("credentials") !== null || localStorage.getItem("credentials") !== null;
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
   deleteTask = id => {
     return TaskManager.deleteTask(id).then(tasks =>
