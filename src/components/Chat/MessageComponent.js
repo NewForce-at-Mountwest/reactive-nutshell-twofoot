@@ -17,9 +17,22 @@ export default class MessageComponent extends Component {
 		} else {
 		}
 	};
-	handleFriendship = () => {
-		window.alert("Are you sure you want to add this friend?")
+	handleFriendship = (e) => {
+		window.alert('Are you sure you want to add this friend?');
+		const friendshipObject = {
+			otherId: e.target.id,
+			userId: sessionStorage.getItem('credentials')
+		};
+
+		return fetch('http://localhost:5002/friends', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(friendshipObject)
+		}).then((d) => d.json()).then(()=> window.alert("They're now your friend!"))
 	};
+
 	render() {
 		return (
 			<React.Fragment>
