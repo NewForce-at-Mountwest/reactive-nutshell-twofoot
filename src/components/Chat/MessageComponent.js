@@ -20,7 +20,7 @@ export default class MessageComponent extends Component {
 	handleFriendship = (e) => {
 		window.alert('Are you sure you want to add this friend?');
 		const friendshipObject = {
-			otherFriendId: e.target.id,
+			otherId: e.target.id,
 			userId: sessionStorage.getItem('credentials')
 		};
 
@@ -30,7 +30,7 @@ export default class MessageComponent extends Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(friendshipObject)
-		}).then((d) => d.json());
+		}).then((d) => d.json()).then(()=> window.alert("They're now your friend!"))
 	};
 
 	render() {
