@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import ArticleList from './newsArticle/articleList';
 import CreateArticles from './newsArticle/createArticle';
 import EditArticles from './newsArticle/editArticle';
-import Login from './auth/Login';
+import Register from './auth/Login';
+import Login from './auth/ReallyLogin'
 import TaskList from './tasks/TaskList';
 import TaskBuilder from './tasks/TaskBuilder';
 import TaskManager from '../modules/TaskManager';
@@ -230,11 +231,14 @@ export default class ApplicationViews extends Component {
 				/>
 				<Route
 					exact
-					path="/login"
+					path="/register"
 					render={(props) => {
-						return <Login {...props} registerUser={this.registerUser} refreshUsers={this.refreshUsers} />;
+						return <Register {...props} registerUser={this.registerUser} refreshUsers={this.refreshUsers} />;
 					}}
 				/>
+				<Route exact path="/login" render={(props)=>{
+					return <Login {...props}/>;
+				}}/>
 				<Route
 					path="/messages/:messageId(\d+)/edit"
 					render={(props) => {
