@@ -1,3 +1,4 @@
+
 import { Route, Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import ArticleList from './newsArticle/articleList';
@@ -15,6 +16,8 @@ import EventList from './events/eventList';
 import EventBuilder from './events/eventBuilder';
 import EventApiManager from './events/eventApiManager';
 import EventEditForm from './events/eventEditForm';
+import FriendsList from "./friends/friendsList";
+import friendsAPI from "./friends/friendsAPI";
 
 export default class ApplicationViews extends Component {
 	state = {
@@ -145,7 +148,26 @@ export default class ApplicationViews extends Component {
 				tasks: tasks
 			})
 		);
-	};
+  };
+  //Friends Section
+  deleteFriend = userId => {
+    return friendsAPI.deleteFriend(userId)
+      .then(friends => this.setState({
+        friends: friends
+      }))
+  }
+
+  findFriend = name => {
+    return friendsAPI.getFriendName(name)
+  }
+
+  addFriend = (friendId) => {
+
+  return friendsAPI.addFriend(friendId)
+      .then(friends => this.setState({
+        friends: friends
+      }))
+  }
 
 	//Component Did Mount API Calls and Intial State set
 	componentDidMount() {
@@ -161,7 +183,9 @@ export default class ApplicationViews extends Component {
 						.then((messages) => {
 							newState.messages = messages;
 							EventApiManager.getAllEvents().then((events) => {
-								newState.events = events;
+                newState.events = events;
+                friendsAPI.getFriends()
+                .then(friends => ( newState.friends = friends ))
 								this.setState(newState);
 							});
 						});
@@ -242,6 +266,22 @@ export default class ApplicationViews extends Component {
 						}
 					}}
 				/>
+         <Route
+          path="/friends" render={props => {
+            if (this.isAuthenticated()) {
+              return <FriendsList
+              {...props}
+              users={this.state.users}
+              friends={this.state.friends}
+              deleteFriend={this.deleteFriend}
+              getFriendObject={this.getFriendObject}
+              addFriend={this.addFriend}
+              findFriend={this.findFriend} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
 
 				<Route
 					exact
